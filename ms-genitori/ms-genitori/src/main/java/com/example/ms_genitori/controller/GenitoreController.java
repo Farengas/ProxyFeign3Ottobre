@@ -3,6 +3,7 @@ package com.example.ms_genitori.controller;
 import com.example.ms_genitori.model.Genitore;
 import com.example.ms_genitori.service.IGenitoreService;
 import com.example.ms_proxyfeign.model.GenericFeignClient;
+import com.example.ms_studente.model.Studente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,15 +38,21 @@ public class GenitoreController {
         }
     }
 
+    /**
+     * Chiamate proxy a ms-studenti
+     * @return
+     */
     @GetMapping("/f")
-    public ResponseEntity<?> provaProva(){
-        return (ResponseEntity<?>) genitoreService.provaStudenti();
+    public List<Studente> provaProva(){
+        return genitoreService.provaStudenti();
     }
 
     @GetMapping("/s/{idStudente}")
     public Optional<?> trovaStudenteProviamo(@PathVariable Long idStudente){
         return genitoreService.getStudenteById(idStudente);
     }
+
+
     // Endpoint to retrieve all Genitori
     @GetMapping
     public ResponseEntity<List<Genitore>> getAllGenitori() {

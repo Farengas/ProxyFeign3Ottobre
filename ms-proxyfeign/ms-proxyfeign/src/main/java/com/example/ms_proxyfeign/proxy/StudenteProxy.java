@@ -4,6 +4,7 @@ import com.example.ms_proxyfeign.client.StudenteFeignClient;
 import com.example.ms_proxyfeign.model.FeignProxy;
 import com.example.ms_proxyfeign.model.GenericFeignClient;
 
+import com.example.ms_studente.model.Studente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -13,8 +14,48 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
-public class StudenteProxy<T extends GenericFeignClient<T>> extends FeignProxy {
+public class StudenteProxy extends FeignProxy<StudenteFeignClient> {
 
+    @Autowired
+    @Lazy
+    private StudenteFeignClient studenteFeignClient;
+
+    @Override
+    protected StudenteFeignClient getFeignClient() {
+        // Returning StudenteFeignClient directly without casting
+        return studenteFeignClient;
+    }
+
+    @Override
+    protected String getOriginEngagedName() {
+        return "ms-studente";
+    }
+
+    // Create a new Studente
+    public Studente createStudente(Studente studente) {
+        return studenteFeignClient.createStudente(studente).getBody();
+    }
+
+    // Get all Studenti
+    public List<Studente> getAllStudenti() {
+        return studenteFeignClient.getAllStudenti().getBody();
+    }
+
+    // Get Studente by ID
+    public Optional<Studente> getStudenteById(Long idStudente) {
+        return Optional.ofNullable(studenteFeignClient.getStudenteById(idStudente).getBody());
+    }
+
+    // Update an existing Studente
+    public Studente updateStudente(Long idStudente, Studente studenteDetails) {
+        return studenteFeignClient.updateStudente(idStudente, studenteDetails).getBody();
+    }
+
+    // Delete Studente by ID
+    public void deleteStudente(Long idStudente) {
+        studenteFeignClient.deleteStudente(idStudente);
+    }
+/*
     @Autowired
     @Lazy
     private StudenteFeignClient<T> studenteFeignClient;
@@ -48,4 +89,6 @@ public class StudenteProxy<T extends GenericFeignClient<T>> extends FeignProxy {
     public void deleteStudente(Long idStudente) {
         studenteFeignClient.deleteStudente(idStudente);
     }
+
+ */
 }

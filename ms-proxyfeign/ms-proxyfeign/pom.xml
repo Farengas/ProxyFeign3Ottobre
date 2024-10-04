@@ -66,8 +66,14 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
+		<dependency>
+			<groupId>com.example</groupId>
+			<artifactId>ms-studente</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<scope>compile</scope>
+		</dependency>
 
-    </dependencies>
+	</dependencies>
 	<dependencyManagement>
 		<dependencies>
 			<dependency>

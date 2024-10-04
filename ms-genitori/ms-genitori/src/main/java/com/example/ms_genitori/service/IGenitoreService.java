@@ -22,7 +22,7 @@ public interface IGenitoreService {
     // Elimina un genitore per ID
     void deleteGenitore(Long id);
 
-    List<?> provaStudenti();
+    List<Studente> provaStudenti();
 
     List<?> getStudentiForGenitore(Long genitoreId);
     Optional<?> getStudenteForGenitore(Long genitoreId, Long studenteId);

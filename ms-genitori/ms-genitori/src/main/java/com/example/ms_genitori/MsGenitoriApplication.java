@@ -8,7 +8,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@EnableFeignClients
+@EnableFeignClients(basePackages = "com.example.ms_proxyfeign.client")
 public class MsGenitoriApplication {
 
 	public static void main(String[] args) {

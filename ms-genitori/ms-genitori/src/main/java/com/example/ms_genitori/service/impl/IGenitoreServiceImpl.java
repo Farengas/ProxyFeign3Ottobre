@@ -5,6 +5,7 @@ import com.example.ms_genitori.repository.GenitoreRepository;
 import com.example.ms_genitori.service.IGenitoreService;
 import com.example.ms_proxyfeign.model.GenericFeignClient;
 import com.example.ms_proxyfeign.proxy.StudenteProxy;
+import com.example.ms_studente.model.Studente;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -66,7 +67,7 @@ public class IGenitoreServiceImpl implements IGenitoreService {
     }
 
     @Override
-    public List<?> provaStudenti() {
+    public List<Studente> provaStudenti() {
         return studenteProxy.getAllStudenti();
     }
 

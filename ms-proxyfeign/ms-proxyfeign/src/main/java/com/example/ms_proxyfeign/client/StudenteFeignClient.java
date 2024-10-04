@@ -1,7 +1,10 @@
 package com.example.ms_proxyfeign.client;
 
-import com.example.ms_proxyfeign.model.GenericFeignClient;
 
+
+
+import com.example.ms_proxyfeign.model.GenericFeignClient;
+import com.example.ms_studente.model.Studente;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,21 +12,21 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @FeignClient(name = "studente-feign-client", url = "http://localhost:8084")
-public interface StudenteFeignClient<T extends GenericFeignClient<T>> {
+public interface StudenteFeignClient extends GenericFeignClient {
 
     @PostMapping("/api/studenti")
-    ResponseEntity<T> createStudente(@RequestBody T studente);
+    ResponseEntity<Studente> createStudente(@RequestBody Studente studente);
 
     @GetMapping("/api/studenti")
-    ResponseEntity<List<T>> getAllStudenti();
+    ResponseEntity<List<Studente>> getAllStudenti();
 
     @GetMapping("/api/studenti/{idStudente}")
-    ResponseEntity<T> getStudenteById(@PathVariable("idStudente") Long idStudente);
+    ResponseEntity<Studente> getStudenteById(@PathVariable("idStudente") Long idStudente);
 
     @PutMapping("/api/studenti/{idStudente}")
-    ResponseEntity<T> updateStudente(
+    ResponseEntity<Studente> updateStudente(
             @PathVariable("idStudente") Long idStudente,
-            @RequestBody T studenteDetails
+            @RequestBody Studente studenteDetails
     );
 
     @DeleteMapping("/api/studenti/{idStudente}")

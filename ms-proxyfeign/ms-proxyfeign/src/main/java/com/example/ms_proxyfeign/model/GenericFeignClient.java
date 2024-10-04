@@ -5,7 +5,22 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
 
 @FeignClient(name = "generic-feign-client")
-public interface GenericFeignClient<T> {
+public interface GenericFeignClient {
+    @GetMapping("/{endpoint}")
+    Object performGet(@PathVariable("endpoint") String endpoint, @RequestHeader HttpHeaders headers);
+
+    @PostMapping("/{endpoint}")
+    Object performPost(@PathVariable("endpoint") String endpoint, @RequestBody Object body);
+
+    @PutMapping("/{endpoint}")
+    Object performPut(@PathVariable("endpoint") String endpoint, @RequestBody Object body);
+
+    @PatchMapping("/{endpoint}")
+    Object performPatch(@PathVariable("endpoint") String endpoint, @RequestBody Object body);
+
+    @DeleteMapping("/{endpoint}")
+    Object performDelete(@PathVariable("endpoint") String endpoint, @RequestHeader HttpHeaders headers);
+    /*
     @GetMapping("/{endpoint}")
     <T> T performGet(@PathVariable("endpoint") String endpoint, HttpHeaders headers);
 
@@ -20,5 +35,7 @@ public interface GenericFeignClient<T> {
 
     @DeleteMapping("/{endpoint}")
     <T> T performDelete(@PathVariable("endpoint") String endpoint, HttpHeaders headers);
+
+     */
 
 }

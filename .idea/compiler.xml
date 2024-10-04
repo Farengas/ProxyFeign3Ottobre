@@ -10,12 +10,14 @@
         <module name="ms-proxyfeign" />
         <module name="ms-professore" />
         <module name="ms-scuola" />
+        <module name="ms-genitori" />
         <module name="ms-studente" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ms-genitori" options="-parameters" />
       <module name="ms-professore" options="-parameters" />
       <module name="ms-proxyfeign" options="-parameters" />
       <module name="ms-scuola" options="-parameters" />

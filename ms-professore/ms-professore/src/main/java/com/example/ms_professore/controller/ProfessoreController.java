@@ -2,6 +2,7 @@ package com.example.ms_professore.controller;
 
 import com.example.ms_professore.model.Professore;
 import com.example.ms_professore.service.ProfService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.common.errors.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/professori")
+@Slf4j
 public class ProfessoreController {
 
     private final ProfService professoreService;
@@ -31,6 +33,7 @@ public class ProfessoreController {
     // Get all Professori
     @GetMapping
     public ResponseEntity<List<Professore>> getAllProfessori() {
+        log.info("SONO NEL METODO GET AL PROFESSORI");
         List<Professore> professori = professoreService.getAllProfessori();
         return new ResponseEntity<>(professori, HttpStatus.OK);
     }
